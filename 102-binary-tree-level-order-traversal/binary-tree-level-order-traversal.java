@@ -13,18 +13,18 @@
  *     }
  * }
  */
+ import java.util.*;
 class Solution {
+    List<List<Integer>>mainlist=new ArrayList<>();
+    List<Integer>list=new ArrayList<>();
     public List<List<Integer>> levelOrder(TreeNode root) {
-        List<List<Integer>>mainlist=new ArrayList<>();
-        if(root==null){
-            return mainlist;
-        }
-        Queue<TreeNode>q=new LinkedList<>();
-        q.add(root);
-        q.add(null);
-        List<Integer>list=new ArrayList<>();
-        while(!q.isEmpty()){
-            
+       Queue<TreeNode>q=new LinkedList<>();
+       if(root==null){return mainlist;}
+
+         q.add(root);
+         q.add(null);
+
+         while(!q.isEmpty()){
             TreeNode curr=q.remove();
             if(curr==null){
                 mainlist.add(list);
@@ -34,19 +34,17 @@ class Solution {
                 }else{
                     q.add(null);
                 }
-
             }else{
-                
                 list.add(curr.val);
-                if(curr.left!=null){
-                    q.add(curr.left);
-                }
-                if(curr.right!=null){
-                    q.add(curr.right);
-                }
-               
+               if(curr.left!=null){
+                q.add(curr.left);
+               }
+               if(curr.right!=null){
+                q.add(curr.right);
+               }
+
             }
-        }
-       return mainlist;
+         }
+         return mainlist;
     }
 }
